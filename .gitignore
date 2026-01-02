@@ -1,0 +1,46 @@
+# Build artifacts
+build/
+build-linux/
+build_test/
+*.exe
+*.ilk
+*.pdb
+*.obj
+*.o
+*.a
+*.so
+*.dylib
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+build.ninja
+.ninja_deps
+.ninja_log
+Testing/
+
+# C++ package manager
+vcpkg_installed/
+.vcpkg/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+.ipynb_checkpoints/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Misc
+*.tmp
+*.bak

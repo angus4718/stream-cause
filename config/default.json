@@ -1,0 +1,33 @@
+{
+  "window_seconds": 600,
+  "update_interval_seconds": 30,
+  "beta": 10.0,
+  "em_max_iter": 50,
+  "em_epsilon": 1e-4,
+  "fci_alpha_ci": 0.01,
+  "fci_d_max": 3,
+  "cusum_threshold": 5.0,
+  "cusum_allowance_k": 0.5,
+  "ring_buffer_capacity": 1048576,
+  "n_instruments": 59,
+  "session_start_et": "09:30:00",
+  "session_end_et": "16:00:00",
+  "output_dir": "output/snapshots",
+  "log_level": "info",
+  "datasets": {
+    "equities": {
+      "dataset": "XNAS.ITCH",
+      "schema": "mbo",
+      "query_file": "data/queries/xnas_itch.json"
+    },
+    "futures": {
+      "dataset": "GLBX.MDP3",
+      "schema": "mbo",
+      "query_file": "data/queries/glbx_mdp3.json"
+    }
+  },
+  "macro_calendar": "data/calendars/macro_events.parquet",
+  "macro_window_minutes": 30,
+  "n_threads": 32,
+  "alpha_series_history": 200
+}

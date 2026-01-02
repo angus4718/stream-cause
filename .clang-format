@@ -1,0 +1,47 @@
+---
+Language: Cpp
+BasedOnStyle: Google
+
+# Indentation
+IndentWidth: 4
+ContinuationIndentWidth: 4
+AccessModifierOffset: -4
+NamespaceIndentation: None
+
+# Brace style – keep opening brace on same line (K&R / Google default)
+BreakBeforeBraces: Attach
+
+# Column limit
+ColumnLimit: 100
+
+# Pointer/reference alignment
+PointerAlignment: Left
+
+# Include sorting
+SortIncludes: CaseInsensitive
+IncludeBlocks: Regroup
+
+# Spacing
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: false
+SpacesInAngles: Never
+SpaceAfterCStyleCast: false
+SpaceBeforeCpp11BracedList: false
+
+# Short constructs – keep short functions/lambdas/ifs on one line where they fit
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortLambdasOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+
+# Constructor initialiser lists
+BreakConstructorInitializers: BeforeColon
+PackConstructorInitializers: Never
+
+# Template / function argument breaking
+BinPackArguments: false
+BinPackParameters: false
+AlignAfterOpenBracket: Align
+
+# Trailing commas
+InsertTrailingCommas: None

@@ -1,0 +1,12 @@
+{
+  "name": "streamcause",
+  "version": "0.1.0",
+  "dependencies": [
+    "eigen3",
+    "tbb",
+    "boost-lockfree",
+    "spdlog",
+    "nlohmann-json",
+    "catch2"
+  ]
+}
