@@ -83,3 +83,33 @@ elseif(MSVC)
     add_compile_options(/arch:AVX2)
     add_compile_options($<$<CONFIG:Release>:/O2>)
 endif()
+
+set(STREAMCAUSE_SOURCES
+    src/main.cpp
+    src/ingestion/market_event.cpp
+    # src/ingestion/databento_client.cpp
+    src/ingestion/file_replay.cpp
+    src/ingestion/event_router.cpp
+    src/hawkes/hawkes_pair.cpp
+    src/hawkes/em_estimator.cpp
+    src/hawkes/rolling_window.cpp
+    src/hawkes/intensity_tracker.cpp
+    src/causal/pag.cpp
+    src/causal/ci_test.cpp
+    src/causal/ts_fci.cpp
+    src/causal/graph_store.cpp
+    src/changepoint/cusum.cpp
+    src/changepoint/bocpd.cpp
+    src/pipeline/thread_pool.cpp
+    src/pipeline/pipeline.cpp
+)
+
+add_executable(streamcause ${STREAMCAUSE_SOURCES})
+target_include_directories(streamcause PRIVATE src)
+target_link_libraries(streamcause PRIVATE
+    Eigen3::Eigen
+    TBB::tbb
+    spdlog::spdlog
+    nlohmann_json::nlohmann_json
+    # databento::databento
+)
