@@ -113,3 +113,5 @@ target_link_libraries(streamcause PRIVATE
     nlohmann_json::nlohmann_json
     # databento::databento
 )
+
+add_subdirectory(tests)
