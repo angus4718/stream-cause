@@ -44,3 +44,13 @@ dist/
 # Misc
 *.tmp
 *.bak
+
+# Large binary data (not tracked; stored on project filesystem)
+data/*.bin
+data/lob/
+data/lob_spy18/
+data/lob_tmp/
+data/trades_by_day/
+data/spy18/
+data/calendars/
+data/queries/
