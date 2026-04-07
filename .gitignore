@@ -54,3 +54,19 @@ data/trades_by_day/
 data/spy18/
 data/calendars/
 data/queries/
+
+# Generated pipeline output (alpha/lambda binaries, thousands of files)
+output/multiday/
+output/multiday_spy18/
+output/test_20251201/
+output/test_20251201_all/
+output/snapshots/
+
+# Large tick-level result files (>10MB; summary CSVs are tracked)
+output/**/curve.csv
+
+# Generated configs
+config/days/
+
+# SLURM job logs
+logs/
