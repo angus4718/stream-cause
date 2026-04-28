@@ -70,3 +70,5 @@ config/days/
 
 # SLURM job logs
 logs/
+
+config/spy18_run.json

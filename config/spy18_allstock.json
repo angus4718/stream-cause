@@ -1,0 +1,18 @@
+{
+  "n_instruments": 18,
+  "window_seconds": 300,
+  "update_interval_seconds": 30,
+  "beta": 0.05,
+  "em_max_iter": 30,
+  "em_epsilon": 1e-4,
+  "fci_alpha_ci": 0.01,
+  "fci_d_max": 3,
+  "cusum_threshold": 5.0,
+  "cusum_allowance_k": 0.5,
+  "alpha_reg": 1e-3,
+  "alpha_series_history": 20,
+  "n_threads": 4,
+  "output_dir": "output/multiday_spy18",
+  "macro_calendar": "",
+  "log_level": "info"
+}
