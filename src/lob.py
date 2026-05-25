@@ -247,7 +247,7 @@ class Market:
 
 
 if __name__ == "__main__":
-    load_dotenv(Path(__file__).parent / ".env")
+    load_dotenv(Path(__file__).parent.parent / ".env")
     client = db.Historical(os.environ["DATABENTO_API_KEY"])
 
     # Next, we will request MBO data starting from the beginning of pre-market trading hours
