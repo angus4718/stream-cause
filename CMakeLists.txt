@@ -4,8 +4,6 @@ project(streamcause LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# e.g. cmake -DCMAKE_TOOLCHAIN_FILE=<vcpkg>/scripts/buildsystems/vcpkg.cmake ..
-
 find_package(Eigen3 CONFIG REQUIRED)
 find_package(TBB CONFIG REQUIRED)
 find_package(Boost CONFIG REQUIRED)
@@ -87,19 +85,12 @@ endif()
 set(STREAMCAUSE_SOURCES
     src/main.cpp
     src/ingestion/market_event.cpp
-    # src/ingestion/databento_client.cpp
     src/ingestion/file_replay.cpp
     src/ingestion/event_router.cpp
     src/hawkes/hawkes_pair.cpp
     src/hawkes/em_estimator.cpp
     src/hawkes/rolling_window.cpp
     src/hawkes/intensity_tracker.cpp
-    src/causal/pag.cpp
-    src/causal/ci_test.cpp
-    src/causal/ts_fci.cpp
-    src/causal/graph_store.cpp
-    src/changepoint/cusum.cpp
-    src/changepoint/bocpd.cpp
     src/pipeline/thread_pool.cpp
     src/pipeline/pipeline.cpp
 )
@@ -111,7 +102,6 @@ target_link_libraries(streamcause PRIVATE
     TBB::tbb
     spdlog::spdlog
     nlohmann_json::nlohmann_json
-    # databento::databento
 )
 
 add_subdirectory(tests)

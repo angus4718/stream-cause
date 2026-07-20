@@ -16,7 +16,7 @@ cd /ocean/projects/cis260122p/ccheung1/stream-cause
 PYTHON=/ocean/projects/cis260122p/ccheung1/.conda_envs/lob/bin/python3
 export PYTHONPATH=/ocean/projects/cis260122p/ccheung1/stream-cause
 
-echo "=== SPY18 Step 1: Preprocess Trades ===" && date
+date
 mkdir -p data/spy18
 
 $PYTHON scripts/preprocess_trades_multiday.py \
@@ -26,4 +26,4 @@ $PYTHON scripts/preprocess_trades_multiday.py \
     --out_dir data/spy18 \
     --workers 8
 
-echo "Done." && date
+date

@@ -4,7 +4,6 @@
 
 using namespace sc;
 
-// Use a small capacity for tests.
 using SmallRingBuffer = RingBuffer<16>;
 
 TEST_CASE("RingBuffer: push and pop single-threaded", "[ring_buffer]") {
@@ -27,18 +26,15 @@ TEST_CASE("RingBuffer: push and pop single-threaded", "[ring_buffer]") {
 TEST_CASE("RingBuffer: overflow returns false", "[ring_buffer]") {
     SmallRingBuffer rb;
     MarketEvent ev{};
-
-    // Fill the buffer.
     for (int i = 0; i < 16; ++i) {
         rb.push(ev);
     }
-    // One more push should fail (buffer full).
     REQUIRE_FALSE(rb.push(ev));
 }
 
 TEST_CASE("RingBuffer: SPSC concurrent correctness", "[ring_buffer]") {
     constexpr int N = 10000;
-    RingBuffer<1 << 14> rb; // 16k capacity
+    RingBuffer<1 << 14> rb;
 
     std::atomic<int> consumed{0};
     std::thread producer([&] {

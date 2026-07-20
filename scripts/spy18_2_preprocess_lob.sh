@@ -16,7 +16,7 @@ cd /ocean/projects/cis260122p/ccheung1/stream-cause
 PYTHON=/ocean/projects/cis260122p/ccheung1/.conda_envs/lob/bin/python3
 export PYTHONPATH=/ocean/projects/cis260122p/ccheung1/stream-cause
 
-echo "=== SPY18 Step 2: Preprocess LOB ===" && date
+date
 
 # Only run the per-symbol worker for SPY (reuse existing lob_tmp for others),
 # then merge all 18 symbols into data/lob_spy18/
@@ -29,4 +29,4 @@ $PYTHON scripts/preprocess_lob_multiday.py \
     --workers   4 \
     --only_syms SPY
 
-echo "Done." && date
+date

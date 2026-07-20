@@ -6,12 +6,7 @@
 
 namespace sc {
 
-// Lock-free SPSC ring buffer using power-of-2 capacity.
-// One producer thread (ingestion) and one consumer thread (Hawkes EM).
-// Uses acquire/release semantics on head_/tail_ to avoid data races.
-//
-// wrap past capacity within a single epoch given 2^20 capacity and
-// realistic event rates).
+// Lock-free SPSC ring buffer with power-of-2 capacity (one producer, one consumer).
 template <std::size_t Capacity>
 class RingBuffer {
     static_assert((Capacity & (Capacity - 1)) == 0, "Capacity must be power of 2");
@@ -20,13 +15,10 @@ class RingBuffer {
 public:
     RingBuffer() : head_(0), tail_(0) {}
 
-    // Push an event. Returns false if buffer is full (producer should back off).
     bool push(const MarketEvent& event) {
-        // Hint: load tail_ relaxed, load head_ acquire, check full
-        // write buf_[tail & mask], store tail_ release.
         size_t current_tail = tail_.load(std::memory_order_relaxed);
         size_t current_head = head_.load(std::memory_order_acquire);
-        if (current_tail - current_head >= Capacity){
+        if (current_tail - current_head >= Capacity) {
             return false;
         }
         buf_[current_tail & kMask] = event;
@@ -34,13 +26,10 @@ public:
         return true;
     }
 
-    // Pop an event into out. Returns false if buffer is empty.
     bool pop(MarketEvent& out) {
-        // Hint: load head_ relaxed, load tail_ acquire, check empty
-        // read buf_[head & mask] into out, store head_ release.
         size_t current_head = head_.load(std::memory_order_relaxed);
         size_t current_tail = tail_.load(std::memory_order_acquire);
-        if (current_head == current_tail){
+        if (current_head == current_tail) {
             return false;
         }
         out = buf_[current_head & kMask];
@@ -49,8 +38,7 @@ public:
     }
 
     std::size_t size() const {
-        return tail_.load(std::memory_order_relaxed) -
-               head_.load(std::memory_order_relaxed);
+        return tail_.load(std::memory_order_relaxed) - head_.load(std::memory_order_relaxed);
     }
 
     bool empty() const { return size() == 0; }
@@ -62,7 +50,6 @@ private:
     std::array<MarketEvent, Capacity> buf_;
 };
 
-// Default capacity: 2^20 events per instrument.
 using DefaultRingBuffer = RingBuffer<1u << 20>;
 
-} // namespace sc
+}  // namespace sc

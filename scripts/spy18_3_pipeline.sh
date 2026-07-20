@@ -13,7 +13,7 @@
 set -euo pipefail
 cd /ocean/projects/cis260122p/ccheung1/stream-cause
 
-echo "=== SPY18 Step 3: StreamCause Pipeline — single full-range run ===" && date
+date
 
 # Clean any leftover files from aborted runs, then recreate empty dir.
 rm -rf output/multiday_spy18
@@ -34,7 +34,7 @@ build-linux/streamcause \
     --start  2025-10-01 \
     --end    2026-01-01
 
-echo "Binary run complete." && date
+date
 
 # Build per-day symlink structure:
 #   output/multiday_spy18/{YYYYMMDD}/{YYYY-MM-DD} -> ../../../multiday_spy18/{YYYY-MM-DD}
@@ -64,9 +64,6 @@ for d in trading_days(datetime.date(2025,10,1), datetime.date(2026,1,1)):
     os.makedirs(link_parent, exist_ok=True)
     if not os.path.exists(link_path):
         os.symlink(src, link_path)
-        print(f"  linked {date_compact}/{date_str}")
-    else:
-        print(f"  {date_compact}/{date_str} already exists")
 PYEOF
 
-echo "Symlinks built." && date
+date

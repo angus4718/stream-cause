@@ -1,89 +1,30 @@
-# Build artifacts
+# Build
 build/
 build-linux/
 build_test/
-*.exe
-*.ilk
-*.pdb
-*.obj
-*.o
-*.a
-*.so
-*.dylib
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
 Makefile
-build.ninja
-.ninja_deps
-.ninja_log
-Testing/
-
-# C++ package manager
+*.o
+*.a
+*.so
 vcpkg_installed/
 .vcpkg/
 
 # Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-.Python
 *.egg-info/
-dist/
 .ipynb_checkpoints/
-
-# Editor / IDE
 .vscode/
 .idea/
 *.swp
-*.swo
 *~
 .DS_Store
-
-# Misc
-*.tmp
-*.bak
-
-# Large binary data (not tracked; stored on project filesystem)
-data/*.bin
-data/lob/
-data/lob_spy18/
-data/lob_tmp/
-data/trades_by_day/
-data/spy18/
-data/calendars/
-data/queries/
-
-# Generated pipeline output (alpha/lambda binaries, thousands of files)
-output/multiday/
-output/multiday_spy18/
-output/test_20251201/
-output/test_20251201_all/
-output/snapshots/
-
-# Large tick-level result files (>10MB; summary CSVs are tracked)
-output/**/curve.csv
-
-# Generated configs
-config/days/
-
-# SLURM job logs
-logs/
-
-config/spy18_run.json
-
-# LaTeX build artifacts
-paper/*.aux
-paper/*.bbl
-paper/*.blg
-paper/*.log
-paper/*.out
-paper/*.fls
-paper/*.fdb_latexmk
-paper/*.synctex.gz
-
+data
+output/
 paper/
-
-# Secrets
+config/
+logs/
 .env

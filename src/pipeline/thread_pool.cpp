@@ -3,7 +3,6 @@
 namespace sc {
 
 ThreadPool::ThreadPool(int n_threads) {
-    // Handle n_threads == 0 gracefully (use hardware_concurrency).
     workers_.reserve(n_threads);
     for (int i = 0; i < n_threads; ++i) {
         workers_.emplace_back([this] { worker_loop(); });
@@ -19,7 +18,6 @@ ThreadPool::~ThreadPool() {
 }
 
 std::future<void> ThreadPool::submit(std::function<void()> task) {
-    // task into queue; notify one worker.
     auto pt = std::make_shared<std::packaged_task<void()>>(std::move(task));
     std::future<void> fut = pt->get_future();
     {
@@ -32,7 +30,6 @@ std::future<void> ThreadPool::submit(std::function<void()> task) {
 }
 
 void ThreadPool::wait_all() {
-    // Use a separate condition variable or spin with a small sleep.
     while (active_tasks_.load() > 0) {
         std::this_thread::yield();
     }
@@ -53,4 +50,4 @@ void ThreadPool::worker_loop() {
     }
 }
 
-} // namespace sc
+}  // namespace sc

@@ -10,10 +10,9 @@ static void signal_handler(int /*sig*/) {
 }
 
 int main(int argc, char* argv[]) {
-    // manual argv scanning.
-    std::string config_path = "config/default.json";
-    std::string mode = "replay"; // "live" or "replay"
-    std::string file_path = ""; // preprocessed binary event file
+    std::string config_path = "config/spy18_allstock.json";
+    std::string mode = "replay";
+    std::string file_path = "";
     std::string start_date = "2023-01-03";
     std::string end_date = "2023-01-03";
     double speed = 10.0;
@@ -35,9 +34,7 @@ int main(int argc, char* argv[]) {
         }
     }
 
-
     sc::Config cfg = sc::Config::from_json_file(config_path);
-
     sc::Pipeline pipeline(cfg);
     g_pipeline = &pipeline;
 
@@ -47,8 +44,6 @@ int main(int argc, char* argv[]) {
     if (mode == "live") {
         pipeline.run_live();
     } else {
-        // If --file is given, use file-based replay; otherwise fall back to
-        // date-range replay (requires Databento library, currently a stub).
         const std::string& replay_src = file_path.empty() ? start_date : file_path;
         pipeline.run_replay(replay_src, end_date, speed);
     }

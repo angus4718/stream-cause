@@ -282,5 +282,5 @@ if __name__ == "__main__":
             )
             print(f"{symbol} Aggregated BBO | {mbo.pretty_ts_recv}")
             best_bid, best_offer = market.aggregated_bbo(mbo.instrument_id)
-            print(f"    {best_offer}")
-            print(f"    {best_bid}")
+            print(f" {best_offer}")
+            print(f" {best_bid}")

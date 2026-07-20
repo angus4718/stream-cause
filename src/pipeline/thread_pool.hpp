@@ -10,22 +10,14 @@
 
 namespace sc {
 
-// Fixed-size thread pool for parallelizing EM updates across instrument pairs.
-// Each call to submit() enqueues a task; futures allow synchronization.
-//
-// for better work stealing and NUMA affinity. The interface below is
-// intentionally compatible with both backends.
+// Fixed-size thread pool; submit() returns a future for task completion.
 class ThreadPool {
 public:
     explicit ThreadPool(int n_threads);
     ~ThreadPool();
 
-    // Submit a task and return a future for its completion.
     std::future<void> submit(std::function<void()> task);
-
-    // Block until all currently submitted tasks complete.
     void wait_all();
-
     int n_threads() const { return static_cast<int>(workers_.size()); }
 
 private:
@@ -39,4 +31,4 @@ private:
     std::atomic<int> active_tasks_{0};
 };
 
-} // namespace sc
+}  // namespace sc

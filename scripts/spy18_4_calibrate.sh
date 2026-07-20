@@ -17,7 +17,7 @@ PYTHON=/ocean/projects/cis260122p/ccheung1/.conda_envs/lob/bin/python3
 export PYTHONPATH=/ocean/projects/cis260122p/ccheung1/stream-cause
 export PYTHONUNBUFFERED=1
 
-echo "=== SPY18 Step 4: IS Calibration ===" && date
+date
 
 $PYTHON scripts/backtest_multiday.py \
     --lob_dir      data/lob_spy18 \
@@ -29,4 +29,4 @@ $PYTHON scripts/backtest_multiday.py \
     --end          2026-01-01 \
     --session_filter
 
-echo "Done." && date
+date
